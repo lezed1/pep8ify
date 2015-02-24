@@ -10,15 +10,10 @@ function pep8ify (original, callback) {
     });
 }
 
-logger = function(a) {console.log(a);}
-
-pep8ify("testInput", logger);
-
 document.querySelector("form").addEventListener('submit', function (e) {
   textarea = document.querySelector("textarea");
   pep8ify(textarea.value, function (formatted) {
     textarea.value = formatted;
   });
-  e.preventDefault()
-  return false;
+  e.preventDefault();
 });
