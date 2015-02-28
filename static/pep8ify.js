@@ -12,20 +12,27 @@ function pep8ify(original, callback) {
   aggressive += 1;
 }
 
+function resize() {
+  var evt = document.createEvent("Event");
+    evt.initEvent("autosize.update", true, false);
+    document.querySelector('textarea').dispatchEvent(evt);
+}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   document.querySelector("form").addEventListener('submit', function (e) {
     textarea = document.querySelector("textarea");
     pep8ify(textarea.value, function (formatted) {
       textarea.value = formatted;
-      console.log("resizing!");
-      autosize(document.querySelector('textarea'));
+      resize()
     });
     e.preventDefault();
   });
 
   document.querySelector("textarea").addEventListener('input', function (e) {
     aggressive = 0;
-    autosize(document.querySelector('textarea'));
+    resize();
   });
+
+  autosize(document.querySelector('textarea'));
 });
 
